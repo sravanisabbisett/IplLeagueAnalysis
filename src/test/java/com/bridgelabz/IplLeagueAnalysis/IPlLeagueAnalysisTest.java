@@ -35,7 +35,7 @@ public class IPlLeagueAnalysisTest {
             String sortedIPLBattingData = iplLeagueAnalysis.getAverageWiseSortedIPLBattingData(BATTING_FILE);
             BatingAnalysisCsv[] battingAnalysisCSV = new Gson().fromJson(sortedIPLBattingData, BatingAnalysisCsv[].class);
             Assert.assertEquals(0,battingAnalysisCSV[0].average,0.0);
-            Assert.assertEquals(83.2,battingAnalysisCSV[100].average, 0.0);
+            Assert.assertEquals(83.2,battingAnalysisCSV[battingAnalysisCSV.length-1].average, 0.0);
         } catch (IplLeagueException ioException) {
             ioException.printStackTrace();
         }
@@ -68,5 +68,11 @@ public class IPlLeagueAnalysisTest {
         String sortedIPLBattingData = iplLeagueAnalysis.getBestStrikeRateWith4sAnds6S(BATTING_FILE);
         BatingAnalysisCsv[] bowlingAnalysisCsvs = new Gson().fromJson(sortedIPLBattingData, BatingAnalysisCsv[].class);
         Assert.assertEquals("Andre Russell",bowlingAnalysisCsvs[bowlingAnalysisCsvs.length-1].player);
+    }
+    @Test
+    public void givenBatingData_shouldReturnGreatAverageWithBestStrikeRate_shouldReturnResult() throws IplLeagueException{
+        String sortedIPLBattingData = iplLeagueAnalysis.getGreatAverageWithBestStrikeRate(BATTING_FILE);
+        BatingAnalysisCsv[] bowlingAnalysisCsvs = new Gson().fromJson(sortedIPLBattingData, BatingAnalysisCsv[].class);
+        Assert.assertEquals("MS Dhoni",bowlingAnalysisCsvs[bowlingAnalysisCsvs.length-1].player);
     }
 }

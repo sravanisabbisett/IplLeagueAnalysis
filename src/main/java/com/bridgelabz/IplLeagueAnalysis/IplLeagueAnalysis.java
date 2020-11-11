@@ -69,6 +69,12 @@ public class IplLeagueAnalysis {
                 .thenComparing(BatingAnalysisCsv::getStrikeRate);
         return returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator);
     }
+    public String getGreatAverageWithBestStrikeRate(String filePath) throws IplLeagueException {
+        loadBatingdata(filePath);
+        Comparator<BatingAnalysisCsv> batingAnalysisCsvComparator=Comparator.comparing(BatingAnalysisCsv::getAverage)
+                .thenComparing(BatingAnalysisCsv::getStrikeRate);
+        return returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator);
+    }
 
     public <E> String returnJsonFile(List<E> list,Comparator<E> comparator ){
         this.sort.sort(list,comparator);
@@ -78,7 +84,7 @@ public class IplLeagueAnalysis {
 
     public static void main(String[] args) throws IplLeagueException {
         IplLeagueAnalysis iplLeagueAnalysis=new IplLeagueAnalysis();
-        String result=iplLeagueAnalysis.getBestStrikeRateWith4sAnds6S(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\batting.csv");
+        String result=iplLeagueAnalysis.getGreatAverageWithBestStrikeRate(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\batting.csv");
         System.out.println(result);
     }
 }

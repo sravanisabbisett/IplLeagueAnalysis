@@ -52,6 +52,9 @@ public class BatingAnalysisCsv {
     public double getStrikeRate(){
         return strikeRate;
     }
+    public double getAverage(){
+        return average;
+    }
     public int getBoundaryCount(){
         return fours+sixes;
     }
