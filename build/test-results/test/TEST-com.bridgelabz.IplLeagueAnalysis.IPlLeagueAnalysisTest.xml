@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-11T03:50:10" hostname="DESKTOP-62HQPBS" time="0.269">
+<testsuite name="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-11T05:10:39" hostname="DESKTOP-62HQPBS" time="0.26">
   <properties/>
-  <testcase name="givenBattingData_max6sAnd4s_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.269"/>
+  <testcase name="givenBatingData_shouldReturnHighestSRWith4sAnd6s_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.26"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -25,7 +25,7 @@ public class IPlLeagueAnalysisTest {
         Assert.assertEquals(101,numOfEntries);
     }
     @Test
-    public void givenLoadBowlingFile_shouldReturnTheNoOfRecords() throws IOException, CSVBuilderException {
+    public void givenLoadBowlingFile_shouldReturnTheNoOfRecords() throws IplLeagueException {
         int numOfEntries=iplLeagueAnalysis.loadBowlingData(BOWLING_FILE);
         Assert.assertEquals(99,numOfEntries);
     }
@@ -56,5 +56,17 @@ public class IPlLeagueAnalysisTest {
         BatingAnalysisCsv[] battingAnalysisCSV2 = new Gson().fromJson(sixes,BatingAnalysisCsv[].class);
         Assert.assertEquals("Shikhar Dhawan",battingAnalysisCSV1[battingAnalysisCSV1.length-1].player);
         Assert.assertEquals("Andre Russell",battingAnalysisCSV2[battingAnalysisCSV2.length-1].player);
+    }
+    @Test
+    public void givenBowlingData_shouldSortedOnAverage_shouldReturnResult() throws IplLeagueException, IOException, CSVBuilderException {
+        String sortedIPLBattingData = iplLeagueAnalysis.getMaximumBowlingAverage(BOWLING_FILE);
+        BowlingAnalysisCsv[] bowlingAnalysisCsvs = new Gson().fromJson(sortedIPLBattingData, BowlingAnalysisCsv[].class);
+        Assert.assertEquals(166.0,bowlingAnalysisCsvs[bowlingAnalysisCsvs.length-1].average, 0.0);
+    }
+    @Test
+    public void givenBatingData_shouldReturnHighestSRWith4sAnd6s_shouldReturnResult() throws IplLeagueException{
+        String sortedIPLBattingData = iplLeagueAnalysis.getBestStrikeRateWith4sAnds6S(BATTING_FILE);
+        BatingAnalysisCsv[] bowlingAnalysisCsvs = new Gson().fromJson(sortedIPLBattingData, BatingAnalysisCsv[].class);
+        Assert.assertEquals("Andre Russell",bowlingAnalysisCsvs[bowlingAnalysisCsvs.length-1].player);
     }
 }

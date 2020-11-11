@@ -28,13 +28,15 @@ public class IplLeagueAnalysis {
             throw new IplLeagueException(ioException.getMessage(),IplLeagueException.ExceptionType.CSV_FILE_PROBLEM);
         }
     }
-    public int loadBowlingData(String filePathCSV) throws CSVBuilderException, IOException {
+    public int loadBowlingData(String filePathCSV) throws IplLeagueException {
         try (Reader reader = Files.newBufferedReader(Paths.get(filePathCSV))) {
             ICSVBuilder csvBuilder=CSVBuilderFactory.createCSVBuilder();
             bowlingAnalysisCsvs=csvBuilder.getCsvFileIterator(reader,BowlingAnalysisCsv.class);
             return bowlingAnalysisCsvs.size();
         }catch (CSVBuilderException builderException){
-            throw new CSVBuilderException(builderException.getMessage(),CSVBuilderException.ExceptionType.UNABLE_TO_PARSE);
+            throw new IplLeagueException(builderException.getMessage(),IplLeagueException.ExceptionType.UNABLE_TO_PARSE);
+        }catch (IOException ioException){
+            throw new IplLeagueException(ioException.getMessage(),IplLeagueException.ExceptionType.CSV_FILE_PROBLEM);
         }
     }
     public String getAverageWiseSortedIPLBattingData(String filePath) throws IplLeagueException {
@@ -56,6 +58,17 @@ public class IplLeagueAnalysis {
         maxFoursAndSixes.add(returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator1));
         return maxFoursAndSixes;
     }
+    public String getMaximumBowlingAverage(String filePath) throws IplLeagueException {
+        loadBowlingData(filePath);
+        Comparator<BowlingAnalysisCsv> bowlingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv -> bowlingAnalysisCsv.average);
+        return returnJsonFile(bowlingAnalysisCsvs,bowlingAnalysisCsvComparator);
+    }
+    public String getBestStrikeRateWith4sAnds6S(String filePath)throws IplLeagueException{
+        loadBatingdata(filePath);
+        Comparator<BatingAnalysisCsv> batingAnalysisCsvComparator=Comparator.comparing(BatingAnalysisCsv::getBoundaryCount)
+                .thenComparing(BatingAnalysisCsv::getStrikeRate);
+        return returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator);
+    }
 
     public <E> String returnJsonFile(List<E> list,Comparator<E> comparator ){
         this.sort.sort(list,comparator);
@@ -65,7 +78,7 @@ public class IplLeagueAnalysis {
 
     public static void main(String[] args) throws IplLeagueException {
         IplLeagueAnalysis iplLeagueAnalysis=new IplLeagueAnalysis();
-        List result=iplLeagueAnalysis.getMaximum4sAnd6sInBattingData(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\batting.csv");
+        String result=iplLeagueAnalysis.getBestStrikeRateWith4sAnds6S(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\batting.csv");
         System.out.println(result);
     }
 }
