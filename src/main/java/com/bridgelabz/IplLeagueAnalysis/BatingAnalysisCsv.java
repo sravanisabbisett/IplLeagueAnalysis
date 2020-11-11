@@ -39,10 +39,22 @@ public class BatingAnalysisCsv {
     @CsvBindByName(column = "50", required = true)
     public int halfCentury;
 
+
     @CsvBindByName(column = "4s", required = true)
     public int fours;
 
     @CsvBindByName(column = "6s", required = true)
     public int sixes;
+
+    public int getFours() {
+        return fours;
+    }
+
+    public int getSixes() {
+        return sixes;
+    }
+    public String getPlayer() {
+        return player;
+    }
 
 }

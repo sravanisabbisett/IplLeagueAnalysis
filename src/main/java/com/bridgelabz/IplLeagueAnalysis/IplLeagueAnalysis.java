@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class IplLeagueAnalysis {
     sorting sort=new sorting();
@@ -47,10 +47,25 @@ public class IplLeagueAnalysis {
         Comparator<BatingAnalysisCsv> batingAnalysisCsvComparator=Comparator.comparing(batingAnalysisCsv -> batingAnalysisCsv.strikeRate);
         return returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator);
     }
+    public List<String> getMaximum4sAnd6sInBattingData(String filePath) throws IplLeagueException {
+        List<String> maxFoursAndSixes=new ArrayList<>();
+        loadBatingdata(filePath);
+        Comparator<BatingAnalysisCsv> batingAnalysisCsvComparator=Comparator.comparing(batingAnalysisCsv->batingAnalysisCsv.fours);
+        Comparator<BatingAnalysisCsv>batingAnalysisCsvComparator1=Comparator.comparing(batingAnalysisCsv -> batingAnalysisCsv.sixes);
+        maxFoursAndSixes.add(returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator));
+        maxFoursAndSixes.add(returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator1));
+        return maxFoursAndSixes;
+    }
 
     public <E> String returnJsonFile(List<E> list,Comparator<E> comparator ){
         this.sort.sort(list,comparator);
         String sortedCensusData=new Gson().toJson(list);
         return sortedCensusData;
+    }
+
+    public static void main(String[] args) throws IplLeagueException {
+        IplLeagueAnalysis iplLeagueAnalysis=new IplLeagueAnalysis();
+        List result=iplLeagueAnalysis.getMaximum4sAnd6sInBattingData(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\batting.csv");
+        System.out.println(result);
     }
 }
