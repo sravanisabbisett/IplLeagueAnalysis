@@ -42,6 +42,11 @@ public class IplLeagueAnalysis {
         Comparator<BatingAnalysisCsv> battingAnalysisComparator = Comparator.comparing(battingAnalysisCSV -> battingAnalysisCSV.average);
         return returnJsonFile(batingAnalysisCsvList,battingAnalysisComparator);
     }
+    public String getHighestStrikeRateIplBattingData(String filePath) throws IplLeagueException{
+        loadBatingdata(filePath);
+        Comparator<BatingAnalysisCsv> batingAnalysisCsvComparator=Comparator.comparing(batingAnalysisCsv -> batingAnalysisCsv.strikeRate);
+        return returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator);
+    }
 
     public <E> String returnJsonFile(List<E> list,Comparator<E> comparator ){
         this.sort.sort(list,comparator);

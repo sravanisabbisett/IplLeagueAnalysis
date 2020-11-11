@@ -38,4 +38,11 @@ public class IPlLeagueAnalysisTest {
             ioException.printStackTrace();
         }
     }
+
+    @Test
+    public void givenBattingData_shouldSortedOnStrikeRate_shouldReturnResult() throws IplLeagueException {
+        String sortedIPLBattingData = iplLeagueAnalysis.getHighestStrikeRateIplBattingData(BATTING_FILE);
+        BatingAnalysisCsv[] battingAnalysisCSV = new Gson().fromJson(sortedIPLBattingData, BatingAnalysisCsv[].class);
+        Assert.assertEquals(333.33,battingAnalysisCSV[100].strikeRate, 0.0);
+    }
 }
