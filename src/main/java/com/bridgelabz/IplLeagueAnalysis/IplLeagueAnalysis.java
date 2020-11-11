@@ -90,8 +90,20 @@ public class IplLeagueAnalysis {
      
     public String getBestEconomyRateInBowlers(String filePath) throws IplLeagueException {
         loadBowlingData(filePath);
-        Comparator<BowlingAnalysisCsv> batingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv -> bowlingAnalysisCsv.economyRate);
-        return returnJsonFile(bowlingAnalysisCsvs,batingAnalysisCsvComparator);
+        Comparator<BowlingAnalysisCsv> bowilingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv -> bowlingAnalysisCsv.economyRate);
+        return returnJsonFile(bowlingAnalysisCsvs,bowilingAnalysisCsvComparator);
+    }
+    public String getBestStrikeRateWith4wAnd5W(String filePath) throws IplLeagueException {
+        loadBowlingData(filePath);
+        Comparator<BowlingAnalysisCsv> bowlingAnalysisCsvComparator=Comparator.comparing(BowlingAnalysisCsv::getwicketCount)
+                                                                .thenComparing(BowlingAnalysisCsv::getStrikeRate);
+        return returnJsonFile(bowlingAnalysisCsvs,bowlingAnalysisCsvComparator);
+    }
+    public String getGreatBowlingAverageWithBestStrikeRate(String filePath) throws IplLeagueException {
+        loadBowlingData(filePath);
+        Comparator<BowlingAnalysisCsv> bowlingAnalysisCsvComparator=Comparator.comparing(BowlingAnalysisCsv::getAverage)
+                .thenComparing(BowlingAnalysisCsv::getStrikeRate);
+        return returnJsonFile(bowlingAnalysisCsvs,bowlingAnalysisCsvComparator);
     }
 
     public <E> String returnJsonFile(List<E> list,Comparator<E> comparator ){
@@ -102,7 +114,7 @@ public class IplLeagueAnalysis {
 
     public static void main(String[] args) throws IplLeagueException {
         IplLeagueAnalysis iplLeagueAnalysis=new IplLeagueAnalysis();
-        String result=iplLeagueAnalysis.getMaximumRumsWithBestAverage(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\batting.csv");
+        String result=iplLeagueAnalysis.getGreatBowlingAverageWithBestStrikeRate(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\bowling.csv");
         System.out.println(result);
     }
 }

@@ -41,4 +41,14 @@ public class BowlingAnalysisCsv {
 
     @CsvBindByName(column = "5w", required = true)
     public int fiveWicketsInInnings;
+
+    public int getwicketCount(){
+        return fiveWicketsInInnings+fiveWicketsInInnings;
+    }
+    public double getStrikeRate(){
+        return strikeRate;
+    }
+    public double getAverage(){
+        return average;
+    }
 }
