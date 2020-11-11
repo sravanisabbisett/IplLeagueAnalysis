@@ -88,10 +88,10 @@ public class IPlLeagueAnalysisTest {
         Assert.assertEquals(120,bowlingAnalysisCsvs[bowlingAnalysisCsvs.length-1].strikeRate, 0.0);
     }
     @Test
-    public void givenBowlingData_shouldGetBestStrikingRate_shouldReturnResult() throws IplLeagueException{
+    public void givenBowlingData_shouldGetBestEconomyRate_shouldReturnResult() throws IplLeagueException{
         String sortedIPLBattingData = iplLeagueAnalysis.getBestEconomyRateInBowlers(BOWLING_FILE);
         BowlingAnalysisCsv[] bowlingAnalysisCsvs = new Gson().fromJson(sortedIPLBattingData, BowlingAnalysisCsv[].class);
-        Assert.assertEquals(13.5,bowlingAnalysisCsvs[bowlingAnalysisCsvs.length-1].economyRate, 0.0);
+        Assert.assertEquals("Ben Cutting",bowlingAnalysisCsvs[bowlingAnalysisCsvs.length-1].player);
     }
     @Test
     public void givenBowlingData_shouldGetBestAverageWithStrikeRate_shouldReturnResult() throws IplLeagueException{
