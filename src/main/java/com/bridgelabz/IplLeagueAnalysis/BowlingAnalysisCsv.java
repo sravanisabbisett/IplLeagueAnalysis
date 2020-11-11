@@ -51,4 +51,7 @@ public class BowlingAnalysisCsv {
     public double getAverage(){
         return average;
     }
+    public int getWickets(){
+        return wickets;
+    }
 }

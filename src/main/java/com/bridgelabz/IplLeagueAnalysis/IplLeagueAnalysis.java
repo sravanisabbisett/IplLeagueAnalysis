@@ -41,12 +41,14 @@ public class IplLeagueAnalysis {
     }
     public String getAverageWiseSortedIPLBattingData(String filePath) throws IplLeagueException {
         loadBatingdata(filePath);
-        Comparator<BatingAnalysisCsv> battingAnalysisComparator = Comparator.comparing(battingAnalysisCSV -> battingAnalysisCSV.average);
+        Comparator<BatingAnalysisCsv> battingAnalysisComparator = Comparator.comparing(battingAnalysisCSV
+                                                                                        -> battingAnalysisCSV.average);
         return returnJsonFile(batingAnalysisCsvList,battingAnalysisComparator);
     }
     public String getHighestStrikeRateIplBattingData(String filePath) throws IplLeagueException{
         loadBatingdata(filePath);
-        Comparator<BatingAnalysisCsv> batingAnalysisCsvComparator=Comparator.comparing(batingAnalysisCsv -> batingAnalysisCsv.strikeRate);
+        Comparator<BatingAnalysisCsv> batingAnalysisCsvComparator=Comparator.comparing(batingAnalysisCsv
+                                                                                    -> batingAnalysisCsv.strikeRate);
         return returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator);
     }
     public List<String> getMaximum4sAnd6sInBattingData(String filePath) throws IplLeagueException {
@@ -60,7 +62,8 @@ public class IplLeagueAnalysis {
     }
     public String getMaximumBowlingAverage(String filePath) throws IplLeagueException {
         loadBowlingData(filePath);
-        Comparator<BowlingAnalysisCsv> bowlingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv -> bowlingAnalysisCsv.average);
+        Comparator<BowlingAnalysisCsv> bowlingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv
+                                                                                        -> bowlingAnalysisCsv.average);
         return returnJsonFile(bowlingAnalysisCsvs,bowlingAnalysisCsvComparator);
     }
     public String getBestStrikeRateWith4sAnds6S(String filePath)throws IplLeagueException{
@@ -84,13 +87,15 @@ public class IplLeagueAnalysis {
 
     public String getMaximumStrikeRateForBowling(String filePath) throws IplLeagueException {
         loadBowlingData(filePath);
-        Comparator<BowlingAnalysisCsv> bowlingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv -> bowlingAnalysisCsv.strikeRate);
+        Comparator<BowlingAnalysisCsv> bowlingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv
+                                                                                    -> bowlingAnalysisCsv.strikeRate);
         return returnJsonFile(bowlingAnalysisCsvs,bowlingAnalysisCsvComparator);
     }
      
     public String getBestEconomyRateInBowlers(String filePath) throws IplLeagueException {
         loadBowlingData(filePath);
-        Comparator<BowlingAnalysisCsv> bowilingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv -> bowlingAnalysisCsv.economyRate);
+        Comparator<BowlingAnalysisCsv> bowilingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv
+                                                                            -> bowlingAnalysisCsv.economyRate);
         return returnJsonFile(bowlingAnalysisCsvs,bowilingAnalysisCsvComparator);
     }
     public String getBestStrikeRateWith4wAnd5W(String filePath) throws IplLeagueException {
@@ -105,6 +110,12 @@ public class IplLeagueAnalysis {
                 .thenComparing(BowlingAnalysisCsv::getStrikeRate);
         return returnJsonFile(bowlingAnalysisCsvs,bowlingAnalysisCsvComparator);
     }
+    public String getMaximumWicketsWithBestBowlingAverage(String filePath) throws IplLeagueException {
+        loadBowlingData(filePath);
+        Comparator<BowlingAnalysisCsv> bowlingAnalysisCsvComparator=Comparator.comparing(BowlingAnalysisCsv::getWickets).
+                                                                    thenComparing(BowlingAnalysisCsv::getAverage);
+        return returnJsonFile(bowlingAnalysisCsvs,bowlingAnalysisCsvComparator);
+    }
 
     public <E> String returnJsonFile(List<E> list,Comparator<E> comparator ){
         this.sort.sort(list,comparator);
@@ -114,7 +125,7 @@ public class IplLeagueAnalysis {
 
     public static void main(String[] args) throws IplLeagueException {
         IplLeagueAnalysis iplLeagueAnalysis=new IplLeagueAnalysis();
-        String result=iplLeagueAnalysis.getGreatBowlingAverageWithBestStrikeRate(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\bowling.csv");
+        String result=iplLeagueAnalysis.getMaximumWicketsWithBestBowlingAverage(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\bowling.csv");
         System.out.println(result);
     }
 }

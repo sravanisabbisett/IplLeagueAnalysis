@@ -94,9 +94,15 @@ public class IPlLeagueAnalysisTest {
         Assert.assertEquals(13.5,bowlingAnalysisCsvs[bowlingAnalysisCsvs.length-1].economyRate, 0.0);
     }
     @Test
-    public void givenBowlingData_shouldGetBestAverageWithstrikeRate_shouldReturnResult() throws IplLeagueException{
+    public void givenBowlingData_shouldGetBestAverageWithStrikeRate_shouldReturnResult() throws IplLeagueException{
         String sortedIPLBattingData = iplLeagueAnalysis.getGreatBowlingAverageWithBestStrikeRate(BOWLING_FILE);
         BowlingAnalysisCsv[] bowlingAnalysisCsvs = new Gson().fromJson(sortedIPLBattingData, BowlingAnalysisCsv[].class);
         Assert.assertEquals("Krishnappa Gowtham",bowlingAnalysisCsvs[bowlingAnalysisCsvs.length-1].player);
+    }
+    @Test
+    public void givenBowlingData_MaximumRunsWithBestBowlingAverage_shouldReturnResult() throws IplLeagueException{
+        String sortedIPLBattingData = iplLeagueAnalysis.getMaximumWicketsWithBestBowlingAverage(BOWLING_FILE);
+        BowlingAnalysisCsv[] bowlingAnalysisCsvs = new Gson().fromJson(sortedIPLBattingData, BowlingAnalysisCsv[].class);
+        Assert.assertEquals("Imran Tahir",bowlingAnalysisCsvs[bowlingAnalysisCsvs.length-1].player);
     }
 }
