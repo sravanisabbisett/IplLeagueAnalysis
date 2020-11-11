@@ -1,5 +1,6 @@
 package com.bridgelabz.IplLeagueAnalysis;
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class IPlLeagueAnalysisTest {
         iplLeagueAnalysis=new IplLeagueAnalysis();
     }
     @Test
-    public void givenLoadBatingFile_shouldReturnTheNoOfRecords() throws IOException, CSVBuilderException {
+    public void givenLoadBatingFile_shouldReturnTheNoOfRecords() throws IplLeagueException {
         int numOfEntries=iplLeagueAnalysis.loadBatingdata(BATTING_FILE);
         Assert.assertEquals(101,numOfEntries);
     }
@@ -25,5 +26,16 @@ public class IPlLeagueAnalysisTest {
     public void givenLoadBowlingFile_shouldReturnTheNoOfRecords() throws IOException, CSVBuilderException {
         int numOfEntries=iplLeagueAnalysis.loadBowlingData(BOWLING_FILE);
         Assert.assertEquals(99,numOfEntries);
+    }
+    @Test
+    public void givenBatingData_ShouldSortedOnAverage_ShouldReturnResult() {
+        try {
+            String sortedIPLBattingData = iplLeagueAnalysis.getAverageWiseSortedIPLBattingData(BATTING_FILE);
+            BatingAnalysisCsv[] battingAnalysisCSV = new Gson().fromJson(sortedIPLBattingData, BatingAnalysisCsv[].class);
+            Assert.assertEquals(0,battingAnalysisCSV[0].average,0.0);
+            Assert.assertEquals(83.2,battingAnalysisCSV[100].average, 0.0);
+        } catch (IplLeagueException ioException) {
+            ioException.printStackTrace();
+        }
     }
 }

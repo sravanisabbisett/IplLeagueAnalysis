@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-10T15:25:23" hostname="DESKTOP-62HQPBS" time="0.192">
+<testsuite name="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-10T17:52:51" hostname="DESKTOP-62HQPBS" time="0.286">
   <properties/>
-  <testcase name="givenLoadBowlingFile_shouldReturnTheNoOfRecords" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.192"/>
+  <testcase name="givenBatingData_ShouldSortedOnAverage_ShouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.286"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
