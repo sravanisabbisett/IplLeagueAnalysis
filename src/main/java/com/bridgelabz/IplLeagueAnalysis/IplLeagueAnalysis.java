@@ -75,6 +75,18 @@ public class IplLeagueAnalysis {
                 .thenComparing(BatingAnalysisCsv::getStrikeRate);
         return returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator);
     }
+    public String getMaximumRumsWithBestAverage(String filePath) throws IplLeagueException {
+        loadBatingdata(filePath);
+        Comparator<BatingAnalysisCsv> batingAnalysisCsvComparator=Comparator.comparing(BatingAnalysisCsv::getRuns).
+                thenComparing(BatingAnalysisCsv::getAverage);
+        return returnJsonFile(batingAnalysisCsvList,batingAnalysisCsvComparator);
+    }
+
+    public String getMaximumStrikeRateForBowling(String filePath) throws IplLeagueException {
+        loadBowlingData(filePath);
+        Comparator<BowlingAnalysisCsv> bowlingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv -> bowlingAnalysisCsv.strikeRate);
+        return returnJsonFile(bowlingAnalysisCsvs,bowlingAnalysisCsvComparator);
+    }
 
     public <E> String returnJsonFile(List<E> list,Comparator<E> comparator ){
         this.sort.sort(list,comparator);
@@ -84,7 +96,7 @@ public class IplLeagueAnalysis {
 
     public static void main(String[] args) throws IplLeagueException {
         IplLeagueAnalysis iplLeagueAnalysis=new IplLeagueAnalysis();
-        String result=iplLeagueAnalysis.getGreatAverageWithBestStrikeRate(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\batting.csv");
+        String result=iplLeagueAnalysis.getMaximumRumsWithBestAverage(".\\src\\main\\java\\com\\bridgelabz\\IplLeagueAnalysis\\batting.csv");
         System.out.println(result);
     }
 }

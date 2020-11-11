@@ -64,5 +64,8 @@ public class BatingAnalysisCsv {
     public String getPlayer() {
         return player;
     }
+    public int getRuns(){
+        return runs;
+    }
 
 }
