@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-11T06:08:40" hostname="DESKTOP-62HQPBS" time="0.285">
+<testsuite name="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-11-11T06:37:39" hostname="DESKTOP-62HQPBS" time="0.806">
   <properties/>
-  <testcase name="givenBowlingData_shouldGetHighestStrikeRate_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.285"/>
+  <testcase name="givenBattingData_max6sAnd4s_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.334"/>
+  <testcase name="givenBatingData_shouldHighestRunsWithBestAverage_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.068"/>
+  <testcase name="givenBowlingData_shouldSortedOnAverage_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.079"/>
+  <testcase name="givenBattingData_shouldSortedOnStrikeRate_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.052"/>
+  <testcase name="givenBowlingData_shouldGetHighestStrikeRate_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.039"/>
+  <testcase name="givenBatingData_ShouldSortedOnAverage_ShouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.057"/>
+  <testcase name="givenBatingData_shouldReturnHighestSRWith4sAnd6s_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.047"/>
+  <testcase name="givenLoadBowlingFile_shouldReturnTheNoOfRecords" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.022"/>
+  <testcase name="givenBatingData_shouldReturnGreatAverageWithBestStrikeRate_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.038"/>
+  <testcase name="givenBowlingData_shouldGetBestStrikingRate_shouldReturnResult" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.032"/>
+  <testcase name="givenLoadBatingFile_shouldReturnTheNoOfRecords" classname="com.bridgelabz.IplLeagueAnalysis.IPlLeagueAnalysisTest" time="0.02"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

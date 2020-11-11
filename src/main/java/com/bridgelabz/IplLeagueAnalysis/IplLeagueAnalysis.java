@@ -87,6 +87,12 @@ public class IplLeagueAnalysis {
         Comparator<BowlingAnalysisCsv> bowlingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv -> bowlingAnalysisCsv.strikeRate);
         return returnJsonFile(bowlingAnalysisCsvs,bowlingAnalysisCsvComparator);
     }
+     
+    public String getBestEconomyRateInBowlers(String filePath) throws IplLeagueException {
+        loadBowlingData(filePath);
+        Comparator<BowlingAnalysisCsv> batingAnalysisCsvComparator=Comparator.comparing(bowlingAnalysisCsv -> bowlingAnalysisCsv.economyRate);
+        return returnJsonFile(bowlingAnalysisCsvs,batingAnalysisCsvComparator);
+    }
 
     public <E> String returnJsonFile(List<E> list,Comparator<E> comparator ){
         this.sort.sort(list,comparator);
